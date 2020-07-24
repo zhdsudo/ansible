@@ -1,0 +1,15 @@
+---
+ - name: myfirst_deploy
+   hosts: web
+
+
+   roles:
+     - deploy_apache
+     - deploy_nginx
+     - deploy_php
+     - deploy_mysql
+     - create_usr_dir
+     - deploy_php_file_man
+     - deploy_phpmyadmin
+     - deploy_wordpress
+

@@ -1,0 +1,14 @@
+---
+# handlers file for deploy_apache
+
+- name: started apache2
+  systemd:
+    name: apache2
+    enabled: yes
+    state: started
+
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted
+

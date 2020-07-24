@@ -1,0 +1,30 @@
+---
+# tasks file for deploy_mysql
+
+- name: store mysql root password
+  copy: src=.my.cnf dest=/root/.my.cnf
+
+- name: Install mySQL
+  apt: name="{{ item }}"
+  loop: ['mysql-server', 'mysql-client', 'python-mysqldb']
+
+- name: start mySQL service
+  action: service name=mysqld state=started
+
+- name: It was very hard...
+  mysql_user:
+    name: admin
+    host: localhost
+    password: "0302"
+    login_user: root
+    login_password: "0302"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    priv: "*.*:ALL,GRANT"
+
+- name: Create MySQL DB
+  mysql_db:
+    name=wordpress
+    state=present
+    login_unix_socket=/var/run/mysqld/mysqld.sock
+     
+

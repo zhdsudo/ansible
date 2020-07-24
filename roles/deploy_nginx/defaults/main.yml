@@ -1,0 +1,5 @@
+---
+# defaults file for deploy_nginx
+destinNginx: /etc/nginx/
+destinTempl: /etc/nginx/templates
+destinSitesNg: /etc/nginx/sites-enabled

@@ -1,0 +1,69 @@
+---
+# tasks file for deploy_nginx
+
+
+- name: Install Nginx
+  apt: name=nginx update_cache=no state=latest
+  notify:
+    - nginx started
+
+- name: сreate directory temlates
+  file:
+    path="{{ destinTempl }}"
+    mode=0755
+    owner=root
+    group=root
+    state=directory
+
+- name: change Nginx.conf
+  template:
+    src: nginx.conf
+    dest: "{{ destinNginx }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - nginx restart
+
+- name: copy temlates apache24
+  copy:
+    src: apache24.conf
+    dest: "{{ destinTempl }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: copy  temlates wp-includes
+  copy:
+    src: wp-includes.conf
+    dest: "{{ destinTempl }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Add site.ru Nginx
+  copy:
+    src: site.ru
+    dest: "{{ destinSitesNg }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - nginx restart  
+
+- name: Add sites-2.ru Nginx
+  copy:
+    src: site-2.ru
+    dest: "{{ destinSitesNg }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - nginx restart  
+
+- name: nginx restart
+  service:
+    name=nginx
+    state=restarted
+
+

@@ -1,0 +1,5 @@
+---
+# defaults file for deploy_apache
+destinApache: /etc/apache2/apache.conf
+destinMods: /etc/apache2/mods-enabled/mpm_prefork.conf
+destinSites: /etc/apache2/sites-available

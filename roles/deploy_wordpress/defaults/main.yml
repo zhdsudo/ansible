@@ -1,0 +1,4 @@
+---
+# defaults file for deploy_wordpress
+
+destWpconf: /var/www/site.ru

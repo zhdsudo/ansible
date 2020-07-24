@@ -1,0 +1,41 @@
+---
+# tasks file for create_usr_dir
+
+- name: Add user site.ru
+  user:
+    name: site-2.ru
+    append: yes
+
+- name: сreate directory site.ru
+  file:
+    path=/var/www/site.ru
+    mode=0754
+    owner=www-data
+    group=www-data
+    state=directory
+
+- name: сreate directory site-2.ru
+  file:
+    path=/var/www/site-2.ru
+    mode=0754
+    owner=site-2.ru
+    group=site-2.ru
+    state=directory
+
+- name: сreate directory logs
+  file:
+    path=/var/www/logs
+    mode=0754
+    owner=www-data
+    group=www-data
+    state=directory
+
+- name: сreate directory tmp
+  file:
+    path=/var/www/tmp
+    mode=0777
+    owner=www-data
+    group=www-data
+    state=directory
+
+

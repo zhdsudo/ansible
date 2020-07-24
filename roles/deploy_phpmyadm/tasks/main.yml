@@ -1,0 +1,29 @@
+---
+# tasks file for deploy_phpmyadm
+
+- name: Download phpmyadmin
+  get_url:
+    url=https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-l>
+    dest=/tmp/phpMyAdmin-5.0.2-all-languages.zip
+
+- name: Extract Phpmyadmin
+  unarchive:
+    src=/tmp/phpMyAdmin-5.0.2-all-languages.zip
+    dest=/var/www/
+    copy=no
+
+- name:
+    shell: mv phpMyAdmin-5.0.2-all-languages phpMyadmin
+    args:
+      chdir: /var/www/
+
+
+- name: Change phpMyadmconf
+    copy:
+    src: config.inc.php
+    dest: "{{ destPhpmyadm }}"
+    owner: www-data
+    group: www-data
+    mode: '0644'
+
+

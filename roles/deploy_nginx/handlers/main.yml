@@ -1,0 +1,17 @@
+---
+# handlers file for deploy_nginx
+
+
+- name: nginx started
+  systemd:
+    name: nginx
+    enabled: yes
+    state: started
+
+- name: nginx restart
+  service:
+    name=nginx
+    state=restarted
+
+
+

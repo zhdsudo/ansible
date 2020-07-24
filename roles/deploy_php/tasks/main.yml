@@ -1,0 +1,26 @@
+---
+# tasks file for deploy_php
+
+
+- name: Install sertificates
+  shell: apt install ca-certificates apt-transport-https
+
+- name: Import keys
+  shell: wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
+
+- name: Add rep
+  apt_repository:
+    repo: "deb https://packages.sury.org/php/ stretch main"
+    update_cache: yes
+
+- name: Install php
+  apt:
+  cache_valid_time: 3600
+    name: "{{ item }}"
+    loop: ['php7.3', 'php7.3-mysql']
+
+
+
+
+
+

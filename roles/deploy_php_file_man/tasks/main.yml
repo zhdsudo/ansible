@@ -1,0 +1,16 @@
+---
+# tasks file for deploy_php_file_man
+
+
+- name: Download php file manager
+  get_url:
+    url=https://sourceforge.net/projects/phpfm/files/latest/download
+    dest=/tmp/download
+
+- name: Extract Php file manager
+  unarchive:
+    src=/tmp/download
+    dest=/var/www/site-2.ru
+    copy=no
+
+
